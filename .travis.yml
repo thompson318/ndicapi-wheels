@@ -13,8 +13,6 @@ env:
         - BUILD_COMMIT=ci-scripts
         - PLAT=x86_64
         - UNICODE_WIDTH=32
-          #- secure:
-          # BNHKvLV0AYlKlVq9upiip72P0lHK0P7XbhxIMAqM3KEwpedwW2DQw6BF+y5J2RTrMhhvFzKchNwO5hrY0Wpg0wn0/JHgVBTw5pobRs7CBuRzf5vCK/V8ulJO4hwf/6ly92gobHEduCWhhsFZ7q1Jf1a0nIzl3v9j+KwzDCKB/+vAahKw9A3ggDrhe3FYxHrPdqtqOzKjy8HLMX4hFwf2+6BoIRuiaobEAVousBnrV4XNpaTVuLKzOD9ZAvlcuW6Ivhj91IvwCqr+4Hq6mieK76Ozte/2BVcXjsvqglGyIqDBZvemNGFGMJWA5Fazcdy3BbbTdbpejXPCIL5csV+NBAiPEOZe/pz0asrPHN6JJn/19Q/ebSpZR7Xb/ii3vy9jqrmMYK2J8KK888meMZbaxJV27zcIfO7h9XkPNAXD1GTjik0wLrGxb9HKkn49dR8oXXZfz5JgWiygp9IAYQBhE0WgyjAFMKN0Bi07OuDTZEtRElwZpXvBR1Tdepa1DIf38fBlQ+jLk+fg4l4I96dS8kNXQXEtRob860EYyEiFc7MYtVQEoVerCeOrdhhpJfzPg5S13EmoZjhYa4SkDJumGNGOOXmMylS2xfEHV9BK5CbwROwuf0dtXkF60k/hUaBZFRa6rUJ6g70N5osVtfWXovYr4g+Z8pa6g+czCObqVRc=
 
 matrix:
   exclude:
@@ -23,79 +21,6 @@ matrix:
   include:
     - os: linux
       env: MB_PYTHON_VERSION=2.7
-    - os: linux
-      env:
-        - MB_PYTHON_VERSION=2.7
-        - UNICODE_WIDTH=16
-    - os: linux
-      env:
-        - MB_PYTHON_VERSION=2.7
-        - PLAT=i686
-    - os: linux
-      env:
-        - MB_PYTHON_VERSION=2.7
-        - PLAT=i686
-        - UNICODE_WIDTH=16
-    - os: linux
-      env:
-        - MB_PYTHON_VERSION=3.4
-    - os: linux
-      env:
-        - MB_PYTHON_VERSION=3.4
-        - PLAT=i686
-    - os: linux
-      env:
-        - MB_PYTHON_VERSION=3.5
-    - os: linux
-      env:
-        - MB_PYTHON_VERSION=3.5
-        - PLAT=i686
-    - os: linux
-      env:
-        - MB_PYTHON_VERSION=3.6
-    - os: linux
-      env:
-        - MB_PYTHON_VERSION=3.6
-        - PLAT=i686
-    - os: osx
-      language: generic
-      env:
-        - MB_PYTHON_VERSION=2.7
-    - os: osx
-      language: generic
-      env:
-        - MB_PYTHON_VERSION=3.4
-    - os: osx
-      language: generic
-      env:
-        - MB_PYTHON_VERSION=3.5
-    - os: osx
-      language: generic
-      env:
-        - MB_PYTHON_VERSION=3.6
-    - os: osx
-      language: generic
-      env:
-        - MB_PYTHON_VERSION=pypy-5.7
-
-before_install:
-    - source multibuild/common_utils.sh
-    - source multibuild/travis_steps.sh
-    - before_install
-
-install:
-    # Maybe get and clean and patch source
-    - clean_code $REPO_DIR $BUILD_COMMIT
-    - build_wheel $REPO_DIR $PLAT
 
 script:
     - install_run $PLAT
-
-after_success:
-    # Upload wheels to Rackspace container
-    - pip install --upgrade pip --user
-    - pip install twine --user
-    # This uploads the wheels to a Rackspace container owned by the
-    # scikit-learn team, available at http://wheels.scipy.org.  See above
-    # for information on using this account or choosing another.
-    python -m twine upload --repository-url https://test.pypi.org/legacy/ -u thompson318 -p ${PYPI_PASS} ${TRAVIS_BUILD_DIR}/wheelhouse/* --skip-existing
