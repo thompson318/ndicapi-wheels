@@ -10,4 +10,5 @@ function pip_opts {
 }
 
 function run_tests {
+	:
 }
