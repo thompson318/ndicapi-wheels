@@ -2,7 +2,8 @@ env:
     global:
         - REPO_DIR=ndicapi
         # Commit from your-project that you want to build
-        - BUILD_COMMIT=f4627c20bea3
+        - BUILD_COMMIT=ci-scripts
+          #- BUILD_COMMIT=f4627c20bea3
         # pip dependencies to _build_ your project
         - BUILD_DEPENDS=""
         # pip dependencies to _test_ your project.  Include any dependencies
