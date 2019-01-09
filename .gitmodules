@@ -1,0 +1,6 @@
+[submodule "multibuild"]
+	path = multibuild
+	url = https://github.com/matthew-brett/multibuild.git
+[submodule "ndicapi"]
+	path = ndicapi
+	url = https://github.com/thompson318/ndicapi
