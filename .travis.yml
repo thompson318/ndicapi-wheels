@@ -44,6 +44,6 @@ after_success:
 
     - pip install twine
     - mv wheelhouse dist
-    - python -m twine upload --repository-url https://test.pypi.org/legacy/ -u thompson318 -p ${PYPI_PASS} dist --skip-existing
+    - python -m twine upload --repository-url https://test.pypi.org/legacy/ -u thompson318 -p ${PYPI_PASS} dist/* --skip-existing
 
 
