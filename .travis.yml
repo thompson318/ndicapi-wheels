@@ -1,7 +1,7 @@
 language: python
 # The Travis Python version is unrelated to the version we build and test
 # with.  This is set with the MB_PYTHON_VERSION variable.
-python: 3.5
+python: 3.6
 sudo: required
 dist: trusty
 services: docker
@@ -20,8 +20,8 @@ matrix:
     # Exclude the default Python 3.5 build
     - python: 3.5
   include:
-    - os: linux
-      env: MB_PYTHON_VERSION=2.7
+          #  - os: linux
+          #  env: MB_PYTHON_VERSION=2.7
     - os: osx
       language: generic
       env:
@@ -42,9 +42,7 @@ script:
 
 after_success:
 
-        # pip install --upgrade pip 
-        # pip install twine 
-
-    python -m twine upload --repository-url https://test.pypi.org/legacy/ -u thompson318 -p ${PYPI_PASS} wheelhouse/* --skip-existing
+    - pip install twine 
+    - python -m twine upload --repository-url https://test.pypi.org/legacy/ -u thompson318 -p ${PYPI_PASS} wheelhouse/* --skip-existing
 
 
