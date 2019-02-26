@@ -4,3 +4,4 @@
 [submodule "ndicapi"]
 	path = ndicapi
 	url = https://github.com/thompson318/ndicapi
+	branch = ci-scripts
